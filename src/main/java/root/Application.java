@@ -9,18 +9,18 @@ import root.domain.Category;
 @ComponentScan
 @EnableAutoConfiguration
 public class Application {
-    public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(Application.class);
-        CategoryRepository repository = context.getBean(CategoryRepository.class);
-        repository.save(new Category((long) 1,"category"));
-        repository.save(new Category((long) 2,"category 2"));
+    public static void main(String[] args){
 
-        Iterable<Category> lists = repository.findAll();
+        SpringApplication.run(Application.class, args);
 
-        for (Category entity: lists){
+        /*ConfigurableApplicationContext context = SpringApplication.run(Application.class);
+        ListRepository repository = context.getBean(ListRepository.class);
+        repository.save(new List( 1L,"list1"));
+        repository.save(new List( 2L,"list2"));
+        Iterable<List> lists = repository.findAll();
+        for (List entity: lists){
             System.out.println(entity.getName());
         }
-        context.close();
+        context.close();*/
     }
-
 }
