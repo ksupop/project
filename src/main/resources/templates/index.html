@@ -1,46 +1,41 @@
-
-
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Notes</title>
-    <style>
-        body {
-        background-color: #FAEBD7;
-        }
-    </style>
+    <link rel = "stylesheet" href="/assets/css/bootsrap.css">
+    <link rel = "stylesheet" href="/assets/css/style.css">
 </head>
-<body>
-<table align="center" rules ="rows" style = "width:60%;">
+<body class="bg-dark">
+<div class="container bg-light" >
+    <div class="row" >
+        <div class="col m-2 p-2" >
+            <img class="logo" src="/assets/img/notes.jpg">
+            <span class="head-text">ЗАМЕТКИ</span>
+        </div>
+        <div class="col m-2 p-2 text-right">
+            <a th:href="@{/addList}"><button class="btn btn-primary">Добавить категорию</button></a>
+        </div>
+    </div>
+<table align="center" border="1" cellpadding="1" cellspacing="1" style="color:blue; width:500px">
+    <tbody>
     <tr>
-        <td>
-            <table border="1"  bgcolor="#00BFFF" cellpadding="10" style="width:100%; border-radius:5px;">
-                <tr>
-                    <td align="center" colspan="2">
-                        <font ><h1>Заметки</h1></font>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:30%" bgcolor="#00FFFF">
-                        <div th:each="category: ${categories}">
-                            <a th:href=@{/index} th:utext="${category.getName()}"></a>
-                        </div>
-
-
-                        <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
-                            <p><input type="submit" value="Добавить" /> </p>
-                        </form>
-
-
-                    </td>
-                    <td bgcolor="#00FFFF">
-                        <p></p>
-                    </td>
-                </tr>
-            </table>
-        </td>
+        <td colspan="2">Меню</td>
     </tr>
+    <tr>
+        <td>Категории</td>
+        <td>Задачи</td>
+    </tr>
+    <tr>
+        <td><div th:each="list: ${lists}">
+            <!--<a th:href=@{/index} th:utext="${list.getName()}"></a>-->
+            <a th:href="@{/index/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a>
+        </div>
+        </td>
+        <td>&nbsp;</td>
+    </tr>
+    </tbody>
 </table>
+</div>
 </body>
 </html>

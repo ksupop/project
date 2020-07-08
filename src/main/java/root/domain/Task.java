@@ -1,8 +1,6 @@
 package root.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -19,6 +17,9 @@ public class Task {
     public Task(){
     }
 
+    public Task(Long parentId, String title){
+        this(null, parentId, title, null, false, null);
+    }
     public Task(Long id, Long parentId, String title, String description, Boolean done, Date date) {
         this.id = id;
         this.parentId = parentId;
@@ -74,5 +75,17 @@ public class Task {
 
     public Date getDate(){
         return date;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "listId", nullable = false)
+    private List list;
+
+    public List getList() {
+        return list;
+    }
+
+    public void setList(List list) {
+        this.list = list;
     }
 }
