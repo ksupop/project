@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>Добавление новой категории</title>
+    <link rel = "stylesheet" href="/assets/css/bootsrap.css">
+    <link rel = "stylesheet" href="/assets/css/style.css">
+</head>
+<body class="bg-dark">
+<div class="container bg-light">
+    <div class="text-center p-4">
+        <h1>Новая категория</h1>
+        <form action="#" th:action="@{/addList}" th:object="${addList}" method="post">
+            <!--<p>Id: <input type="text" th:field="*{id}" /></p>-->
+            <div class="form-group">
+                <p>Введите название:<input type="text" class="form-control" th:field="*{name}" /></p>
+                <p><input type="submit" class="btn btn-success" value="Подтвердить" /> <input type="reset" class="btn btn-primary" value="Сброс" /></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
