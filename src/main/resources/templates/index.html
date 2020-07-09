@@ -17,25 +17,33 @@
             <a th:href="@{/addList}"><button class="btn btn-primary">Добавить категорию</button></a>
         </div>
     </div>
-<table align="center" border="1" cellpadding="1" cellspacing="1" style="color:blue; width:500px">
+<table class="table table-bordered"   style=" width:880px" align="center">
+    <thead class="thead-dark">
+    <tr>
+        <th>Категории</th>
+        <th>Задачи</th>
+    </tr>
+    </thead>
     <tbody>
     <tr>
-        <td colspan="2">Меню</td>
-    </tr>
-    <tr>
-        <td>Категории</td>
-        <td>Задачи</td>
-    </tr>
-    <tr>
-        <td><div th:each="list: ${lists}">
+        <td scope="row">
+            <div th:each="list: ${lists}">
             <!--<a th:href=@{/index} th:utext="${list.getName()}"></a>-->
-            <a th:href="@{/index/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a>
+            <a th:href="@{/index/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a></li>
+                <form align="right"  action="#" th:action="@{/index/{id}/delete (id=${list.getId()})}">
+                    <button type="submit" >Удалить</button>
+                </form>
         </div>
         </td>
-        <td>&nbsp;</td>
+        <td scope="row">
+        </td>
     </tr>
     </tbody>
 </table>
 </div>
+<form action="#" th:action="@{/addList}" method="post" >
+    <input type="text" name="name" />
+    <input type="submit" value="Добавить" />
+</form>
 </body>
 </html>

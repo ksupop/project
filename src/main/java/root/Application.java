@@ -13,6 +13,7 @@ public class Application {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class);
         ListRepository repository= context.getBean(ListRepository.class);
+        // repository.deleteAll();
 
 
     }
