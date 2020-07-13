@@ -89,7 +89,7 @@ public class ListController {
     }
 
     @RequestMapping(value = {"/index/addTask"}, method = RequestMethod.POST)
-    public String categorySubmit(@ModelAttribute TaskEntity addtask, Model model){
+    public String taskSubmit(@ModelAttribute TaskEntity addtask, Model model){
         taskRepository.save(new TaskEntity(addtask.getParent(), addtask.getTitle()));
         return "redirect:/index/" + addtask.getParent();
     }
