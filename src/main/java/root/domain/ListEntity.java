@@ -1,23 +1,24 @@
 package root.domain;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
-public class List {
+public class ListEntity {
 
     @Id
     @GeneratedValue
     private Long id;
     private String name;
 
-    public List() {}
+    public ListEntity() {}
 
-    public List(String name) {
+    public ListEntity(String name) {
         this (null, name);
     }
 
-    public List(Long id, String name) {
+    public ListEntity(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -36,15 +37,5 @@ public class List {
 
     public String getName(){
         return name;
-    }
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "list")
-    private Set<Task> tasks;
-
-    public Set<Task> getTask() {
-        return tasks;
-    }
-
-    public void setTask(Set<Task> tasks) {
-        this.tasks = tasks;
     }
 }

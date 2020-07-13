@@ -1,0 +1,19 @@
+.logo {
+    width: 100px;
+}
+
+.head-text {
+    font-size: 40px;
+}
+
+body {
+    height: 100%;
+}
+
+#table1 td {
+    border: 3px solid black;
+}
+
+#table1 th {
+    border: 3px solid black;
+}

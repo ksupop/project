@@ -1,8 +1,10 @@
 package root.da;
 
-import root.domain.Task;
+import root.domain.TaskEntity;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface TaskRepository extends CrudRepository<Task, Long> {
+public interface TaskRepository extends CrudRepository<TaskEntity, Long>{
+
+    TaskEntity findById(long id);
 }

@@ -1,7 +1,10 @@
 package root.da;
 
-import org.springframework.data.repository.CrudRepository;
-import root.domain.List;
 
-public interface ListRepository extends CrudRepository<List, Long> {
+import root.domain.ListEntity;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ListRepository extends CrudRepository<ListEntity, Long>{
+
+    ListEntity findById(long id);
 }
