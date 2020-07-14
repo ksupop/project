@@ -12,7 +12,7 @@ import root.da.ListRepository;
 import root.da.TaskRepository;
 import root.domain.ListEntity;
 import root.domain.TaskEntity;
-
+import java.util.*;
 
 @Controller
 public class ListController {
@@ -59,27 +59,36 @@ public class ListController {
 
     private Map<Long, TaskEntity> getTasks(Long id){
         Map<Long, TaskEntity> result = new HashMap<>();
-        Iterable<TaskEntity> tasks = taskRepository.findAll();
+        List<TaskEntity> tasks = taskRepository.findByParent(id);
+
 
         for (TaskEntity entity: tasks) {
-            if (entity.getParent() == id)
-                result.put(entity.getId(), entity);
+            result.put(entity.getId(), entity);
         }
         return result;
     }
-
-    @RequestMapping(value = {"/index/{id}/delete"})
-    public String removeList(@PathVariable Long id) {
-        listRepository.deleteById(id);
-        return "redirect:/index";
+    @RequestMapping(value = {"/index/{id}/delete"}, method = RequestMethod.GET)
+    public String removeList(@PathVariable Long id){
+        ListEntity list = listRepository.findById(id).get();
+        List<TaskEntity> tasks = taskRepository.findByParent(id);
+        for(TaskEntity task: tasks){
+            taskRepository.delete(task);
+        }
+        listRepository.deleteById(list.getId());
+        return "redirect:/";
     }
+
 
     @RequestMapping(value = {"/task/{taskId}/delete"})
     public String removeTask(@PathVariable Long taskId) {
         TaskEntity task = taskRepository.findById((long)taskId);
         Long id = task.getParent();
         taskRepository.deleteById(taskId);
-        return "redirect:/index/" + id;
+        if (id != null){
+            return "redirect:/index/" + id;
+        } else{
+            return "redirect:/index";
+        }
     }
 
     @RequestMapping(value = "/index/addTask", method = RequestMethod.GET)

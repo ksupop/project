@@ -1,6 +1,7 @@
 package root.domain;
 import java.util.Date;
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class TaskEntity {
@@ -62,5 +63,6 @@ public class TaskEntity {
         return title;
     }
 
+  
 
 }

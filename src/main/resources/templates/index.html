@@ -12,7 +12,7 @@
     <div class="row" >
         <div class="col m-2 p-2" >
             <img class="logo" src="/assets/img/notes.jpg">
-            <span class="head-text">ЗАМЕТКИ</span>
+            <span class="head-text">СПИСОК ЗАДАЧ</span>
         </div>
         <div class="col m-2 p-2 text-right">
            <button class="btn btn-primary" data-toggle="modal" data-target="#modal1">Добавить категорию</button>
@@ -38,6 +38,7 @@
             <div th:each="task: ${tasks}">
                 <div>
                     <div  th:utext="${task.getTitle()}"></div>
+                    <a th:if="${task.getId()}"th:href="@{/task/{taskId}/delete (id=${task.getId()})}">Удалить</a>
                 </div>
             </div>
         </td>
