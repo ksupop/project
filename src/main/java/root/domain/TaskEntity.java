@@ -9,6 +9,7 @@ public class TaskEntity {
     @Id
     @GeneratedValue
     private Long id;
+    private Long parentId;
     private Long parent;
     private String title;
     private String discription;
@@ -46,7 +47,9 @@ public class TaskEntity {
     public Long getId(){
         return id;
     }
-
+    public Long getParentId(){
+        return parentId;
+    }
     public void setParent(Long parent){
         this.parent = parent;
     }
@@ -63,6 +66,6 @@ public class TaskEntity {
         return title;
     }
 
-  
+
 
 }

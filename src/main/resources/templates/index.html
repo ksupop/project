@@ -16,35 +16,55 @@
         </div>
         <div class="col m-2 p-2 text-right">
            <button class="btn btn-primary" data-toggle="modal" data-target="#modal1">Добавить категорию</button>
+            <!-- <button class="btn btn-warning" data-toggle="modal" data-target="#modal2">Добавить задачу</button> -->
+         </div>
+     </div>
+     <div class="row" >
+         <div class="col-4">
+             <table id="table1" class="table table-bordered table-striped mb-5" align="center">
+               <thead class="thead-dark">
+                 <tr>
+                     <th>Категории</th>
+                 </tr>
+               </thead>
+                 <tbody>
+                 <tr th:each="list: ${lists}">
+                  <td scope="row">
+                   <!--<a th:href=@{/index} th:utext="${list.getName()}"></a>-->
+                     <a th:href="@{/index/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a></li>
+                     <form align="right"  action="#" th:action="@{/index/{id}/delete (id=${list.getId()})}">
+                         <button type="submit" >Удалить</button>
+                     </form>
+                 </td>
+
+                </tr>
+                </tbody>
+            </table>
         </div>
+
+    <div class="col-8">
+        <table id="table1" class="table table-bordered table-striped mb-5" align="center">
+            <thead class="thead-dark">
+            <tr>
+                <th>Задачи</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="task: ${tasks}">
+                <td scope="row">
+                    <div>
+                         <div  th:utext="${task.getTitle()}">
+                         </div>
+                        <form align="right"  action="#" th:action="@{/task/{taskId}/delete (taskId=${task.getId()})}">
+                            <button type="submit" >Удалить</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-<table id="table1" class="table table-bordered table-striped mb-5" style="width:880px;" align="center">
-    <thead class="thead-dark">
-    <tr>
-        <th style="width: 200px;">Категории</th>
-        <th>Задачи</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="list: ${lists}">
-        <td scope="row">
-            <!--<a th:href=@{/index} th:utext="${list.getName()}"></a>-->
-            <a th:href="@{/index/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a></li>
-                <form align="right"  action="#" th:action="@{/index/{id}/delete (id=${list.getId()})}">
-                    <button type="submit" >Удалить</button>
-                </form>
-        </td>
-        <td scope="row">
-            <div th:each="task: ${tasks}">
-                <div>
-                    <div  th:utext="${task.getTitle()}"></div>
-                    <a th:if="${task.getId()}"th:href="@{/task/{taskId}/delete (id=${task.getId()})}">Удалить</a>
-                </div>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    </div>
     <br><br><br><br><br><br><br><br><br><br>
 </div>
 
@@ -73,6 +93,37 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<!--<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Добавление задачи</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" th:action="@{/index/addTask}" method="post" >
+                    <label>Введите название задачи: </label>
+                    <input type="text" name="name" />
+                    <br>
+                    <label>Выберите категорию: </label>
+                    <select name="cat" />
+                    <option th:each="list: ${lists}" th:utext="${list.getName()}"></option></select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                <input type="hidden" name="parent" th:value="${currentList.getId()}">
+                <input class="btn btn-primary" type="submit" value="Подтвердить" />
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+-->
+
 <form action="#" th:action="@{/index/addTask}" method="post" >
     <input type="text" name="title">
     <input type="hidden" name="parent" th:value="${currentList.getId()}">

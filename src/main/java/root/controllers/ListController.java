@@ -77,20 +77,22 @@ public class ListController {
         listRepository.deleteById(list.getId());
         return "redirect:/";
     }
-
-
     @RequestMapping(value = {"/task/{taskId}/delete"})
     public String removeTask(@PathVariable Long taskId) {
         TaskEntity task = taskRepository.findById((long)taskId);
         Long id = task.getParent();
         taskRepository.deleteById(taskId);
-        if (id != null){
-            return "redirect:/index/" + id;
-        } else{
-            return "redirect:/index";
-        }
+        return "redirect:/index/" + id;
     }
 
+    /*@RequestMapping(value = {"/task/{taskId}/delete"})
+    public String removeTask(@PathVariable Long taskId) {
+        TaskEntity task = taskRepository.findById((long)taskId);
+        Long id = task.getParentId();
+        taskRepository.deleteById(taskId);
+        return "redirect:/index/" + id;
+    }
+    */
     @RequestMapping(value = "/index/addTask", method = RequestMethod.GET)
     public String taskForm(Model model) {
         model.addAttribute("addTask", new TaskEntity());
