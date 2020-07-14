@@ -104,4 +104,6 @@ public class ListController {
         taskRepository.save(new TaskEntity(addtask.getParent(), addtask.getTitle()));
         return "redirect:/index/" + addtask.getParent();
     }
+
+
 }
