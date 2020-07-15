@@ -1,7 +1,7 @@
 package root.domain;
 import java.util.Date;
 import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class TaskEntity {
@@ -17,7 +17,7 @@ public class TaskEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date upDateDate;
+    private Date updateDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
@@ -29,14 +29,14 @@ public class TaskEntity {
     }
 
     public TaskEntity(Long id, Long parent, String title, String discription, Boolean done,
-                      Date createDate, Date upDateDate, Date date) {
+                      Date createDate, Date updateDate, Date date) {
         this.id = id;
         this.parent = parent;
         this.title = title;
         this.discription = discription;
         this.done = done;
         this.createDate = createDate;
-        this.upDateDate = upDateDate;
+        this.updateDate = updateDate;
         this.date = date;
     }
 
@@ -47,9 +47,7 @@ public class TaskEntity {
     public Long getId(){
         return id;
     }
-    public Long getParentId(){
-        return parentId;
-    }
+
     public void setParent(Long parent){
         this.parent = parent;
     }
@@ -66,6 +64,45 @@ public class TaskEntity {
         return title;
     }
 
+    public void setDiscription(String discription){
+        this.discription = discription;
+    }
+
+    public String getDiscription(){
+        return discription;
+    }
+
+    public void setDone(Boolean done){
+        this.done = done;
+    }
+
+    public Boolean getDone(){
+        return done;
+    }
+
+    public void setDate(Date date){
+        this.date = date;
+    }
+
+    public Date getDate(){
+        return date;
+    }
+
+    public void setCreateDate(Date createDate){
+        this.createDate = createDate;
+    }
+
+    public Date getCreateDate(){
+        return createDate ;
+    }
+
+    public void setUpdateDate(Date updateDate){
+        this.updateDate = updateDate;
+    }
+
+    public Date getUpdateDate(){
+        return updateDate ;
+    }
 
 
 }

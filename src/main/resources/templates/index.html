@@ -45,14 +45,15 @@
                              <a th:href="@{/index/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a><br>
                          </div>
                           <div class="col" >
-                                 <form action="#" th:action="@{/index/{id}/delete (id=${list.getId()})}">
-                                     <button class="btn btn-sm btn-danger" type="submit" >Удалить</button>
-                                 </form>
+                              <a th:href="@{/index/{id}/change (id=${list.getId()})}">
+                              <button class="btn btn-sm btn-secondary" type="button">Изменить</button>
+                                </a>
+
                           </div>
                           <div class="col">
-                              <a th:href="@{/index/{id}/change (id=${list.getId()})}">
-                                  <button class="btn btn-sm btn-secondary" type="button">Изменить</button>
-                             </a>
+                              <form action="#" th:action="@{/index/{id}/delete (id=${list.getId()})}">
+                                  <button class="btn btn-sm btn-danger" type="submit" >Удалить</button>
+                              </form>
 
                           </div>
                       </div>
@@ -86,13 +87,19 @@
             <tbody>
             <tr th:each="task: ${tasks}">
                 <td scope="row">
-                    <div>
-                         <div  th:utext="${task.getTitle()}">
+                    <div class="row" >
+                         <div class="col-8" th:utext="${task.getTitle()}">
                          </div>
-
-                        <form align="right"  action="#" th:action="@{/task/{taskId}/delete (taskId=${task.getId()})}">
+                        <div class="col" >
+                            <a th:href="@{/task/{taskId}/change (taskId=${task.getId()})}">
+                            <button type="button" class="btn btn-sm btn-secondary">Изменить</button>
+                            </a>
+                        </div>
+                        <div class="col" >
+                            <form action="#" th:action="@{/task/{taskId}/delete (taskId=${task.getId()})}">
                             <button class="btn btn-sm btn-danger" type="submit" >Удалить</button>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </td>
             </tr>
