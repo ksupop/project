@@ -1,0 +1,22 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel = "stylesheet" href="/assets/css/bootsrap.css">
+    <link rel = "stylesheet" href="/assets/css/style.css">
+</head>
+<body class="bg-dark">
+<div class="container bg-light">
+<h5 align="center">Изменить название</h5>
+
+<form action="#" th:object="${list}" th:action="@{/index/{id}/change (id=${list.getId()})}" method="post" align="center">
+
+    <p>Введите название: <input type="text" name="name"/></p>
+    <p><button type="submit" class="btn btn-primary">Подтвердить</button> </p>
+</form>
+</div>
+</body>
+
+</html>

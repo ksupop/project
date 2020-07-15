@@ -15,13 +15,13 @@ public class UpdateController {
     @Autowired
     private ListRepository listRepository;
 
-    @GetMapping(value = {"/index/{id}/update"})
+    @GetMapping(value = {"/index/{id}/change"})
     public String upListForm(Model model, @PathVariable long id) {
         ListEntity list = listRepository.findById(id);
         model.addAttribute("list", list);
-        return "/update";
+        return "/change";
     }
-    @RequestMapping(value = {"/index/{id}/update"}, method = {RequestMethod.POST})
+    @RequestMapping(value = {"/index/{id}/change"}, method = {RequestMethod.POST})
     public String upListSubmit(Model model, @PathVariable long id,
                                @ModelAttribute("list") ListEntity list) {
         ListEntity listToUpdate = listRepository.findById(id);
