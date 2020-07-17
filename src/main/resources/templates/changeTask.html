@@ -10,7 +10,7 @@
 <div class="container bg-light">
 <h5 align="center">Изменение задачи</h5>
 <form action="#" th:object="${task}" th:action="@{/task/{taskId}/change (taskId=${task.getId()})}" method="post" align="center">
-    <p>Задача: <input type="text" name="title"/></p>
+    <p>Задача: <input type="text" th:field="*{title}"/></p>
 
     <p><button type="submit" class="btn btn-primary">Подтвердить</button> </p>
 

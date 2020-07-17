@@ -13,7 +13,7 @@
 
 <form action="#" th:object="${list}" th:action="@{/index/{id}/change (id=${list.getId()})}" method="post" align="center">
 
-    <p>Введите название: <input type="text" name="name"/></p>
+    <p>Введите название: <input type="text" th:field="*{name}"/></p>
     <p><button type="submit" class="btn btn-primary">Подтвердить</button> </p>
 </form>
 </div>

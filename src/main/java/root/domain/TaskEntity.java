@@ -1,8 +1,8 @@
 package root.domain;
 import java.util.Date;
 import javax.persistence.*;
-
-
+import java.time.ZoneId;
+import java.time.LocalDateTime;
 @Entity
 public class TaskEntity {
 
@@ -25,7 +25,8 @@ public class TaskEntity {
 
     public TaskEntity(Long parent, String title) {
         this(null, parent, title, null, false, null, null, null);
-
+        LocalDateTime currentDataTime = LocalDateTime.now();
+        this.createDate = Date.from(currentDataTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 
     public TaskEntity(Long id, Long parent, String title, String discription, Boolean done,

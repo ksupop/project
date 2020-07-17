@@ -45,13 +45,13 @@
                              <a th:href="@{/index/{id}(id=${list.getId()})}" th:utext="${list.getName()}"></a><br>
                          </div>
                           <div class="col" >
-                              <a th:href="@{/index/{id}/change (id=${list.getId()})}">
+                              <a th:if="${list.getId()} != null" th:href="@{/index/{id}/change (id=${list.getId()})}">
                               <button class="btn btn-sm btn-secondary" type="button">Изменить</button>
                                 </a>
 
                           </div>
                           <div class="col">
-                              <form action="#" th:action="@{/index/{id}/delete (id=${list.getId()})}">
+                              <form th:if="${list.getId()} != null" action="#" th:action="@{/index/{id}/delete (id=${list.getId()})}">
                                   <button class="btn btn-sm btn-danger" type="submit" >Удалить</button>
                               </form>
 
@@ -90,6 +90,7 @@
                     <div class="row" >
                          <div class="col-8" th:utext="${task.getTitle()}">
                          </div>
+
                         <div class="col" >
                             <a th:href="@{/task/{taskId}/change (taskId=${task.getId()})}">
                             <button type="button" class="btn btn-sm btn-secondary">Изменить</button>
@@ -100,6 +101,10 @@
                             <button class="btn btn-sm btn-danger" type="submit" >Удалить</button>
                             </form>
                         </div>
+
+                    </div>
+                    <div> Дата создания:
+                    <div th:utext="${task.getCreateDate()}"></div>
                     </div>
                 </td>
             </tr>
